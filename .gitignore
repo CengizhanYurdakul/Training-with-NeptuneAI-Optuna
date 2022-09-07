@@ -2,5 +2,6 @@
 *.jpg
 *.csv
 *.pyc
+*.pth
 
 .neptune
