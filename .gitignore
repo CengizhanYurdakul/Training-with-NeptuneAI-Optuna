@@ -1,3 +1,6 @@
 *.ini
 *.jpg
 *.csv
+*.pyc
+
+.neptune
