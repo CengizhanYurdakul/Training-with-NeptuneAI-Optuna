@@ -20,9 +20,10 @@ class Trainer:
         self.args = args
         self.trial = trial
 
-        self.args["lr"] = self.trial.suggest_float("lr", self.args["trialLearningRate"][0], self.args["trialLearningRate"][0])
+        self.args["lr"] = self.trial.suggest_float("lr", self.args["trialLearningRate"][0], self.args["trialLearningRate"][1])
         self.args["optimizer"] = self.trial.suggest_categorical("optimizer", self.args["trialOptimizer"])
         self.args["backbone"] = self.trial.suggest_categorical("backbone", self.args["trialBackbone"])
+        self.args["pretrained"] = self.trial.suggest_categorical("pretrained", self.args["trialPretrained"])
         
         if self.args["optimizer"] == "SGD":
             self.args["momentum"] = self.trial.suggest_float("momentum", self.args["trialMomentum"][0], self.args["trialLearningRate"][1])
@@ -42,6 +43,7 @@ class Trainer:
         
         self.neptuneName = config["NeptuneAI"]["ProjectName"]
         self.neptuneToken = config["NeptuneAI"]["APIToken"]
+        self.neptuneModelKey = config["NeptuneAI"]["ModelKey"]
         
     def initGlobalVariables(self):
         self.trainIter = 0
@@ -60,6 +62,14 @@ class Trainer:
         self.runNeptune = neptune.init(project=self.neptuneName,
                                        api_token=self.neptuneToken
                                        )
+        
+        try:
+            neptune.init_model(name="Gender classifier",
+                               key=self.neptuneModelKey,
+                               project=self.neptuneName,
+                               api_token=self.neptuneToken)
+        except:
+            print("Model already initialized before to NeptuneAI!")
                 
         self.runNeptune["parameters"] = self.args
         
@@ -106,7 +116,7 @@ class Trainer:
             self.lossFunction.to(self.args["device"])
 
     def logModelNeptune(self):
-        self.neptuneModelVersion = neptune.init_model_version(model="GEN-OPT",
+        self.neptuneModelVersion = neptune.init_model_version(model=self.runNeptune._short_id.split("-")[0] + "-" + self.neptuneModelKey,
                                                             project=self.neptuneName,
                                                             api_token=self.neptuneToken
                                                             )
@@ -121,6 +131,7 @@ class Trainer:
         self.neptuneModelVersion["backbone"] = self.args["backbone"]
         self.neptuneModelVersion["momentum"] = self.args["momentum"]
         self.neptuneModelVersion["optimizer"] = self.args["optimizer"]
+        self.neptuneModelVersion["pretrained"] = self.args["pretrained"]
         
         self.neptuneModelVersion["epoch"] = self.epoch
         
