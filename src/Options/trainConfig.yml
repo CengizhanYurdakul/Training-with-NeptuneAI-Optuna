@@ -13,7 +13,7 @@ validationImagePath: src/Data/ImagesValidation
 validationInformationCSV: src/Data/ValidationGenderInformation.csv
 
 device: cuda:0
-numEpochs: 2
+numEpochs: 10
 accuracyThreshold: 0.8
 lossFunction: BCEWithLogitsLoss
 savePath: Checkpoints
