@@ -4,6 +4,7 @@ trialLearningRate: [0.0001, 0.1]
 trialOptimizer: ["Adam", "SGD"]
 trialBackbone: ["resnet18", "resnet34", "resnet50", "resnet101", "resnet152"]
 trialMomentum: [0.1, 0.99]
+trialPretrained: [true, false]
 
 configFile: secrets.ini
 imagePath: src/Data/Images
@@ -13,8 +14,7 @@ validationInformationCSV: src/Data/ValidationGenderInformation.csv
 
 device: cuda:0
 numEpochs: 2
-accuracyThreshold: 0.01
-pretrained: true
+accuracyThreshold: 0.8
 lossFunction: BCEWithLogitsLoss
 savePath: Checkpoints
 logInterval: 0.1
@@ -22,7 +22,7 @@ momentum: 0.9
 
 numberClass: 2
 seed: 42
-batchSize: 2
-imageSize: 32
+batchSize: 32
+imageSize: 64
 numWorkers: 4 
 testSize: 0.05
