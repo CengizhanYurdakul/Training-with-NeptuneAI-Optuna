@@ -21,6 +21,7 @@ accuracyThreshold: 0.8 # Limit to compare with validation accuracy if higher sav
 lossFunction: BCEWithLogitsLoss # Loss function to use in training
 logInterval: 0.1 # Percentage of logging intervals to terminal
 numberClass: 2 # Number of class to modify backbone's last layers
+momentum: 0.9 # Optimizer momentum
 seed: 42 # Seed
 batchSize: 32 # Batch size for train/test/validation
 imageSize: 64 # Image size to transform images
