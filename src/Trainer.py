@@ -1,8 +1,6 @@
 import os
 import torch
-import random
 import optuna
-import torchvision
 import configparser
 import neptune.new as neptune
 from neptune.new.types import File
@@ -26,8 +24,10 @@ class Trainer:
         self.args["pretrained"] = self.trial.suggest_categorical("pretrained", self.args["trialPretrained"])
         
         if self.args["optimizer"] == "SGD":
-            self.args["momentum"] = self.trial.suggest_float("momentum", self.args["trialMomentum"][0], self.args["trialLearningRate"][1])
-        
+            self.args["momentum"] = self.trial.suggest_float("momentum", self.args["trialMomentum"][0], self.args["trialMomentum"][1])
+        else:
+            self.args["momentum"] = "-"
+            
         self.initConfigs()
         self.initGlobalVariables()
         self.initModel()
@@ -259,11 +259,10 @@ class Trainer:
             self.validate()
             self.checkSave()
             
-            if self.trial is not None:
-                self.trial.report(self.validationAccuracy, self.epoch)
-                    
-                if self.trial.should_prune():
-                    raise optuna.exceptions.TrialPruned()
+            self.trial.report(self.validationAccuracy, self.epoch)
+                
+            if self.trial.should_prune():
+                raise optuna.exceptions.TrialPruned()
                     
         self.runNeptune.stop()
         return self.validationAccuracy
