@@ -2,7 +2,7 @@
 **Abstract:** This project includes training pipeline, experiment tracking, model versioning and hyperparameter tuning based on gender classification problem. The focus is on practicing the tools used, not the problem that model solves. It is easy to implement different dataloaders and modify last layer of model etc.
 
 <p align="center">
-  <img src="assets/logo.jpeg" width="350" title="logo">
+  <img src="assets/logo.png" width="350" title="logo">
 </p>
 
 # Installation
