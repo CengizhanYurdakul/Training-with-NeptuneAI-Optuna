@@ -1,28 +1,28 @@
 # Trial Settings
-trialNumber: 10
-trialLearningRate: [0.0001, 0.1]
-trialOptimizer: ["Adam", "SGD"]
-trialBackbone: ["resnet18", "resnet34", "resnet50", "resnet101", "resnet152"]
-trialMomentum: [0.1, 0.99]
-trialPretrained: [true, false]
+trialNumber: 10 # How many trainings will be done?
+trialLearningRate: [0.0001, 0.1] # Learning rate trial interval
+trialOptimizer: ["Adam", "SGD"] # Optimizer function to choose for training
+trialBackbone: ["resnet18", "resnet34", "resnet50", "resnet101", "resnet152"] # Backbone to choose for training
+trialMomentum: [0.1, 0.99] # Optimizer momentum trail interval
+trialPretrained: [true, false] # Pretrained (w/imagenet) to choose for backbone on training
 
-configFile: secrets.ini
-imagePath: src/Data/Images
-informationCSV: src/Data/TrainGenderInformation.csv
-validationImagePath: src/Data/ImagesValidation
-validationInformationCSV: src/Data/ValidationGenderInformation.csv
+# File Settings
+configFile: secrets.ini # File that includes secret keys and names
+savePath: Checkpoints # Path to save models before upload to NeptuneAI
+imagePath: src/Data/Images # Train/Test images path
+informationCSV: src/Data/TrainGenderInformation.csv # Train/Test gender information csv path
+validationImagePath: src/Data/ImagesValidation # Validation images path
+validationInformationCSV: src/Data/ValidationGenderInformation.csv # Validation gender information csv path
 
-device: cuda:0
-numEpochs: 10
-accuracyThreshold: 0.8
-lossFunction: BCEWithLogitsLoss
-savePath: Checkpoints
-logInterval: 0.1
-momentum: 0.9
-
-numberClass: 2
-seed: 42
-batchSize: 32
-imageSize: 64
-numWorkers: 4 
-testSize: 0.05
+# Training Settings
+device: cuda:0 # Device for training
+numEpochs: 10 # How many epoch will be training done
+accuracyThreshold: 0.8 # Limit to compare with validation accuracy if higher save model to local and NeptuneAI 
+lossFunction: BCEWithLogitsLoss # Loss function to use in training
+logInterval: 0.1 # Percentage of logging intervals to terminal
+numberClass: 2 # Number of class to modify backbone's last layers
+seed: 42 # Seed
+batchSize: 32 # Batch size for train/test/validation
+imageSize: 64 # Image size to transform images
+numWorkers: 4 # Num workers for data loaders
+testSize: 0.05 # Percentage of images to allocate from train to test
