@@ -12,6 +12,12 @@
 conda create --name genderTrain python==3.7.13
 conda activate genderTrain
 pip install -r requirements.txt
+
+# For Cuda 11.1
+pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+
+# For Cuda 10.2
+pip install torch==1.10.1+cu102 torchvision==0.11.2+cu102 -f https://download.pytorch.org/whl/torch_stable.html
 ```
 ## Docker
 ```
