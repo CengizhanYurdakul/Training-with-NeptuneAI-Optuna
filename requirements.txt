@@ -1,4 +1,0 @@
-optuna
-neptune-client
-torch==1.10.1
-torchvision==0.11.2
