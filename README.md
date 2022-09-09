@@ -15,12 +15,9 @@ pip install -r requirements.txt
 ```
 ## Docker
 ```
-# For Cuda 11.1
+# Build and train manually
 docker build -f Docker/Cuda111.dockerfile -t train .
 docker run --runtime=nvidia -it train train.py
-
-# For Cuda 10.2
-
 ```
 
 #TODO Add installation
