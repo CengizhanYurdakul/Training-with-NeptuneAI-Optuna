@@ -1,7 +1,7 @@
-*.ini
 *.jpg
 *.csv
 *.pyc
 *.pth
 
 .neptune
+secrets.ini
