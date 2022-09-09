@@ -15,6 +15,11 @@ pip install -r requirements.txt
 ```
 ## Docker
 ```
+# For Cuda 11.1
+docker build -f Docker/Cuda111.dockerfile -t train .
+docker run --runtime=nvidia -it train train.py
+
+# For Cuda 10.2
 
 ```
 
@@ -25,3 +30,4 @@ pip install -r requirements.txt
 #TODO Add download link for dataset
 #TODO Add dockerfile
 
+docker build -f Docker/Cuda111.dockerfile -t train .
