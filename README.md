@@ -34,6 +34,7 @@ WIKI: 38455 images
 ## Configs
 All training and hyperparameter tuning parameters can be changed from the [trainConfig.yml](src/Options/trainConfig.yml) file. Descriptions of all parameters are available in the file.
 
-#TODO Define .yml file
+### Secret Variables for NeptuneAI
+After creating account on Neptune.ai, API token is required to connect to the project. There are several ways to find your keys. Here is the [link](https://docs.neptune.ai/getting-started/installation#authentication-neptune-api-token). You need to add your informations to `secrets.ini` like [example](secretsExample.ini).
+
 #TODO Show outputs of NeptuneAI and Optuna
-#TODO Define .ini file
