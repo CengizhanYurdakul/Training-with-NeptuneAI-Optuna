@@ -26,15 +26,14 @@ docker build -t train .
 docker run --runtime=nvidia -it train train.py
 ```
 ## Dataset
-CelebAHQ dataset was used for training and WIKI dataset was used for validation. Processed images can be downloaded from [here](https://drive.google.com/file/d/1karOtT_tB34SW8I-dcQZ-vGR5NKMJqxY/view?usp=sharing) then unzip file to `src/Data`
+CelebAHQ dataset was used for training and WIKI dataset was used for validation. Processed images can be downloaded from [here](https://drive.google.com/file/d/1karOtT_tB34SW8I-dcQZ-vGR5NKMJqxY/view?usp=sharing) then unzip file to [src/Data](src/Data)
 ```
 CelebAHQ: 30000 images
 WIKI: 38455 images
 ```
+## Configs
+All training and hyperparameter tuning parameters can be changed from the [trainConfig.yml](src/Options/trainConfig.yml) file. Descriptions of all parameters are available in the file.
 
-
-
-#TODO Add installation
 #TODO Define .yml file
 #TODO Show outputs of NeptuneAI and Optuna
 #TODO Define .ini file
