@@ -1,8 +1,8 @@
 # Trial Settings
-trialNumber: 50 # How many trainings will be done?
+trialNumber: 25 # How many trainings will be done?
 trialLearningRate: [0.0001, 0.1] # Learning rate trial interval
 trialOptimizer: ["Adam", "SGD"] # Optimizer function to choose for training
-trialBackbone: ["resnet18", "resnet34", "resnet50", "resnet101", "resnet152"] # Backbone to choose for training
+trialBackbone: ["resnet18", "resnet34", "resnet50"] # Backbone to choose for training
 trialMomentum: [0.1, 0.99] # Optimizer momentum trail interval
 trialPretrained: [true, false] # Pretrained (w/imagenet) to choose for backbone on training
 
@@ -16,8 +16,8 @@ validationInformationCSV: src/Data/ValidationGenderInformation.csv # Validation 
 
 # Training Settings
 device: cuda:0 # Device for training
-numEpochs: 2 # How many epoch will be training done
-accuracyThreshold: 0.8 # Limit to compare with validation accuracy if higher save model to local and NeptuneAI 
+numEpochs: 20 # How many epoch will be training done
+accuracyThreshold: 0.85 # Limit to compare with validation accuracy if higher save model to local and NeptuneAI 
 lossFunction: BCEWithLogitsLoss # Loss function to use in training
 logInterval: 0.1 # Percentage of logging intervals to terminal
 numberClass: 2 # Number of class to modify backbone's last layers
