@@ -195,7 +195,7 @@ class Trainer:
         
         onnx.save(model, os.path.join(self.args["savePath"], "PyTorchModel_%s_%s_simp.onnx" % (self.args["backbone"], self.epoch)))
         
-        # os.remove(os.path.join(self.args["savePath"], "PyTorchModel_%s_%s.onnx" % (self.args["backbone"], self.epoch)))
+        os.remove(os.path.join(self.args["savePath"], "PyTorchModel_%s_%s.onnx" % (self.args["backbone"], self.epoch)))
     
     def validate(self):
         self.classifier.eval()
