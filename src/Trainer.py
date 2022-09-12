@@ -1,6 +1,8 @@
 import os
+import onnx
 import torch
 import optuna
+import onnxsim
 import configparser
 import neptune.new as neptune
 from neptune.new.types import File
@@ -166,9 +168,35 @@ class Trainer:
         if (self.validationAccuracy > self.bestValidationAccuracy) and (self.validationAccuracy >= self.args["accuracyThreshold"]):
             self.saveModel()
             self.logModelNeptune()
+            self.torch2onnx()
             print("[Current Validation Accuracy: %s > Best Validation Accuracy: %s] Model saved!" % (round(self.validationAccuracy, 3), round(self.bestValidationAccuracy, 3)))
             self.bestValidationAccuracy = self.validationAccuracy
             
+    def torch2onnx(self):
+        self.classifier.cpu()
+        self.classifier.eval()
+        
+        dummyInput = torch.autograd.Variable(torch.randn((1, 3, self.args["imageSize"], self.args["imageSize"])))
+        
+        torch.onnx.export(self.classifier,
+                          dummyInput,
+                          os.path.join(self.args["savePath"], "PyTorchModel_%s_%s.onnx" % (self.args["backbone"], self.epoch)),
+                          opset_version=11,
+                          input_names=["input"],
+                          output_names=["output"],
+                          dynamic_axes={"input": {0 : "batch_size"},
+                                        "output": {0 : "batch_size"}})
+        
+        model = onnx.load(os.path.join(self.args["savePath"], "PyTorchModel_%s_%s.onnx" % (self.args["backbone"], self.epoch)))
+        
+        inputShape = {model.graph.input[0].name : list((1, 3, self.args["imageSize"], self.args["imageSize"]))}
+        
+        model, _ = onnxsim.simplify(model, overwrite_input_shapes=inputShape)
+        
+        onnx.save(model, os.path.join(self.args["savePath"], "PyTorchModel_%s_%s_simp.onnx" % (self.args["backbone"], self.epoch)))
+        
+        # os.remove(os.path.join(self.args["savePath"], "PyTorchModel_%s_%s.onnx" % (self.args["backbone"], self.epoch)))
+    
     def validate(self):
         self.classifier.eval()
         self.truePredicted = 0
@@ -254,6 +282,8 @@ class Trainer:
         
     def main(self):
         for self.epoch in range(self.args["numEpochs"]):
+            self.classifier.to(self.args["device"])
+            
             self.train()
             self.test()
             self.validate()
