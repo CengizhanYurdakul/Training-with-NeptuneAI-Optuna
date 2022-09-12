@@ -11,4 +11,4 @@
 - [x] Add docker and local installation guide
 - [x] Add dataset link as public
 - [x] Add [torch2onnx converter and onnx simplifier](src/Trainer.py#L175)
-- [] Add model interpretability
+- [ ] Add model interpretability
