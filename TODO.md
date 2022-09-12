@@ -1,6 +1,6 @@
 # v1
 - [x] Add [Neptune.ai](https://neptune.ai/) for experiment tracking and model versioning
-    - [] Add instruction for creating account and project on Neptune.ai
+    - [ ] Add instruction for creating account and project on Neptune.ai
 - [x] Add [Optuna](https://optuna.org/) for hyperparameter tuning while training
 - [x] Add `resnet18`, `resnet34`, `resnet50`, `resnet101`, `resnet152` and `` backbones to [model factory](src/Models/ModelFactory.py)
     - [x] Add last layer modifier with respect to number of class to [model factory](src/Models/ModelFactory.py)
