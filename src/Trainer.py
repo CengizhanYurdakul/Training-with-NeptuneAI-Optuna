@@ -19,17 +19,8 @@ class Trainer:
         
         self.args = args
         self.trial = trial
-
-        self.args["lr"] = self.trial.suggest_float("lr", self.args["trialLearningRate"][0], self.args["trialLearningRate"][1])
-        self.args["optimizer"] = self.trial.suggest_categorical("optimizer", self.args["trialOptimizer"])
-        self.args["backbone"] = self.trial.suggest_categorical("backbone", self.args["trialBackbone"])
-        self.args["pretrained"] = self.trial.suggest_categorical("pretrained", self.args["trialPretrained"])
         
-        if self.args["optimizer"] == "SGD":
-            self.args["momentum"] = self.trial.suggest_float("momentum", self.args["trialMomentum"][0], self.args["trialMomentum"][1])
-        else:
-            self.args["momentum"] = "-"
-            
+        self.initTrials()
         self.initConfigs()
         self.initGlobalVariables()
         self.initModel()
@@ -37,7 +28,21 @@ class Trainer:
         self.initOptimizer()
         self.initLossFunction()
         self.initDevice()
-        self.initNeptune()
+        
+        if trial is not None:
+            self.initNeptune()
+            
+    def initTrials(self):
+        if self.trial is not None:
+            self.args["lr"] = self.trial.suggest_float("lr", self.args["trialLearningRate"][0], self.args["trialLearningRate"][1])
+            self.args["optimizer"] = self.trial.suggest_categorical("optimizer", self.args["trialOptimizer"])
+            self.args["backbone"] = self.trial.suggest_categorical("backbone", self.args["trialBackbone"])
+            self.args["pretrained"] = self.trial.suggest_categorical("pretrained", self.args["trialPretrained"])
+            
+            if self.args["optimizer"] == "SGD":
+                self.args["momentum"] = self.trial.suggest_float("momentum", self.args["trialMomentum"][0], self.args["trialMomentum"][1])
+            else:
+                self.args["momentum"] = "-"
         
     def initConfigs(self):
         config = configparser.ConfigParser()
