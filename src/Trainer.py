@@ -21,7 +21,10 @@ class Trainer:
         self.trial = trial
         
         self.initTrials()
-        self.initConfigs()
+        
+        if trial is not None:
+            self.initConfigs()
+            
         self.initGlobalVariables()
         self.initModel()
         self.initDataset()
