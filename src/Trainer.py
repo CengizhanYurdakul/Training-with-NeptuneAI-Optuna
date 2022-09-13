@@ -24,6 +24,7 @@ class Trainer:
         
         if trial is not None:
             self.initConfigs()
+            self.initNeptune()
             
         self.initGlobalVariables()
         self.initModel()
@@ -32,8 +33,6 @@ class Trainer:
         self.initLossFunction()
         self.initDevice()
         
-        if trial is not None:
-            self.initNeptune()
             
     def initTrials(self):
         if self.trial is not None:
