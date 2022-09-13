@@ -1,0 +1,28 @@
+# Trial Settings
+trialNumber: 50 # How many trainings will be done?
+trialLearningRate: [0.0001, 0.1] # Learning rate trial interval
+trialOptimizer: ["Adam", "SGD"] # Optimizer function to choose for training
+trialBackbone: ["resnet18", "resnet34", "resnet50"] # Backbone to choose for training
+trialMomentum: [0.1, 0.99] # Optimizer momentum trail interval
+trialPretrained: [true, false] # Pretrained (w/imagenet) to choose for backbone on training
+
+# File Settings
+configFile: secrets.ini # File that includes secret keys and names
+savePath: Checkpoints # Path to save models before upload to NeptuneAI
+imagePath: src/Data/Images # Train/Test images path
+informationCSV: src/Data/TrainGenderInformation.csv # Train/Test gender information csv path
+validationImagePath: src/Data/ImagesValidation # Validation images path
+validationInformationCSV: src/Data/ValidationGenderInformation.csv # Validation gender information csv path
+
+# Training Settings
+device: cuda:0 # Device for training
+numEpochs: 25 # How many epoch will be training done
+accuracyThreshold: 0.87 # Limit to compare with validation accuracy if higher save model to local and NeptuneAI 
+lossFunction: BCEWithLogitsLoss # Loss function to use in training
+logInterval: 0.1 # Percentage of logging intervals to terminal
+numberClass: 2 # Number of class to modify backbone's last layers
+seed: 42 # Seed
+batchSize: 64 # Batch size for train/test/validation
+imageSize: 32 # Image size to transform images
+numWorkers: 4 # Num workers for data loaders
+testSize: 0.05 # Percentage of images to allocate from train to test
