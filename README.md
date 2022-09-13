@@ -13,8 +13,9 @@ CelebAHQ dataset was used for training and WIKI dataset was used for validation.
 CelebAHQ: 30000 images
 WIKI: 38455 images
 ```
+## Configs
+All training and hyperparameter tuning parameters can be changed from the [trainConfig.yml](src/Options/trainConfig.yml) file. Descriptions of all parameters are available in the file.
 ## Environment
-
 ### Anaconda
 ```
 conda create --name genderTrain python==3.7.13
@@ -34,9 +35,6 @@ python train.py
 docker build -t train .
 docker run --runtime=nvidia -it train train.py
 ```
-## Configs
-All training and hyperparameter tuning parameters can be changed from the [trainConfig.yml](src/Options/trainConfig.yml) file. Descriptions of all parameters are available in the file.
-
 ### Secret Variables for NeptuneAI
 After creating account on Neptune.ai, API token is required to connect to the project. There are several ways to find your keys. Here is the [link](https://docs.neptune.ai/getting-started/installation#authentication-neptune-api-token). You need to add your informations to `secrets.ini` like [example](secretsExample.ini).
 
