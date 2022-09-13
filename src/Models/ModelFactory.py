@@ -9,6 +9,9 @@ class ModelFactory:
             "resnet50",
             "resnet34",
             "resnet18",
+            "mobilenet_v3_small",
+            "mobilenet_v3_large",
+            "mobilenet_v2"
         ]
     
     def getModel(self, modelName:str, pretrained:bool, numberClass:int)->models:
@@ -35,20 +38,12 @@ class ModelFactory:
             self.model = models.resnet34(pretrained=pretrained)
         elif modelName == "resnet18":
             self.model = models.resnet18(pretrained=pretrained)
-        elif modelName == "squeezenet1_0":
-            self.model = models.squeezenet1_0(pretrained=pretrained)
-        elif modelName == "squeezenet1_1":
-            self.model = models.squeezenet1_1(pretrained=pretrained)
-        elif modelName == "densenet201":
-            self.model = models.densenet201(pretrained=pretrained)
-        elif modelName == "densenet169":
-            self.model = models.densenet169(pretrained=pretrained)
-        elif modelName == "densenet161":
-            self.model = models.densenet161(pretrained=pretrained)
-        elif modelName == "densenet121":
-            self.model = models.densenet121(pretrained=pretrained)
-        elif modelName == "inception_v3":
-            self.model = models.inception_v3(pretrained=pretrained)
+        elif modelName == "mobilenet_v3_small":
+            self.model = models.mobilenet_v3_small(pretrained=pretrained)
+        elif modelName == "mobilenet_v3_large":
+            self.model = models.mobilenet_v3_large(pretrained=pretrained)
+        elif modelName == "mobilenet_v2":
+            self.model = models.mobilenet_v2(pretrained=pretrained)
         else:
             raise Exception("Model %s not in list!\nAvailable models: %s" % (modelName, self.modelList))
         
@@ -64,5 +59,7 @@ class ModelFactory:
             self.model.fc = nn.Sequential(
                 nn.Linear(self.model.fc.in_features, numberClass)
             )
+        elif (modelName == "mobilenet_v3_small") or (modelName == "mobilenet_v3_large") or (modelName == "mobilenet_v2"):
+            self.model.classifier[-1] = nn.Linear(self.model.classifier[-1].in_features, numberClass)
         else:
             raise Exception("%s editing is not available!" % modelName)
