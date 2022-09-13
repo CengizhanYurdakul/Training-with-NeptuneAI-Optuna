@@ -54,3 +54,14 @@ The website can be accessed from this [link](https://neptune.ai) and follow sign
 <p align="center">
   <img src="assets/projectExample.png" title="step3">
 </p>
+
+## Experiment Tracking Examples
+In this case, we are proceeding through gender classification and we check whether the model is saving or not from the `Validation Accuracy` metric. Here we give examples of screens to follow our experiments/runs and models from the Neptune.ai website. Also, there is a lots of informations about your experiments while checking your runs. For example, you can check your loss/accuracy graphs, source code changes, monitor hardware usages etc. Finally, all thing that mentioned before can be customizable with respect to your experiment type.
+
+<p align="center">
+  <img src="assets/runs.png" title="runs">
+</p>
+
+<p align="center">
+  <img src="assets/models.png" title="models">
+</p>
