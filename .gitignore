@@ -1,8 +1,8 @@
 *.jpg
-*.csv
 *.pyc
 *.pth
 *.onnx
 
 .neptune
 secrets.ini
+src/Data
