@@ -16,8 +16,7 @@
 # v2
 - [ ] Add false predictions to Neptune.ai for inspect model
 - [ ] Add model interpretability with [captum](https://captum.ai/)
-- [ ] Add `mobilenet_v3_small`, `mobilenet_v3_large` and `mobilenet_v2` backbones to [model factory](src/Models/ModelFactory.py)
-    - [ ] Add last layer modifier with respect to number of class to [model factory](src/Models/ModelFactory.py#L62)
-- [ ] Add model versioning to Neptune.ai
-- [ ] Add quantized backbones to [model factory](src/Models/ModelFactory.py)
+- [x] Add `mobilenet_v3_small`, `mobilenet_v3_large` and `mobilenet_v2` backbones to [model factory](src/Models/ModelFactory.py)
+    - [x] Add last layer modifier with respect to number of class to [model factory](src/Models/ModelFactory.py#L62)
+- [ ] Add dataset versioning to Neptune.ai
 - [ ] Add `processor` to initialize best model that trained before to any platform like [Streamlit](https://streamlit.io/) or [Gradio](https://gradio.app/)
