@@ -37,4 +37,20 @@ All training and hyperparameter tuning parameters can be changed from the [train
 ### Secret Variables for NeptuneAI
 After creating account on Neptune.ai, API token is required to connect to the project. There are several ways to find your keys. Here is the [link](https://docs.neptune.ai/getting-started/installation#authentication-neptune-api-token). You need to add your informations to `secrets.ini` like [example](secretsExample.ini).
 
-#TODO Show outputs of NeptuneAI and Optuna
+## Create Account on Neptune.ai
+The website can be accessed from this [link](https://neptune.ai) and follow sign up button to create free account. After logging in, you will see the projects on the screen. From here, we create a new project from the `New Project` button. After filling in the information about the projects, we will see examples of how the project can be implemented to your training pipeline. Also, you can find your `api token` from here. You can investigate [Trainer](src/Trainer.py) class to understand how Neptune.ai can be implemented to training pipeline.
+
+### Step 1
+<p align="center">
+  <img src="assets/projectScreen.png" title="step1">
+</p>
+
+### Step 2
+<p align="center">
+  <img src="assets/projectInfos.png" title="step2">
+</p>
+
+### Step 3
+<p align="center">
+  <img src="assets/projectExample.png" title="step3">
+</p>
