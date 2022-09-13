@@ -2,3 +2,4 @@ optuna
 neptune-client
 onnxsim
 onnxruntime
+pytest
