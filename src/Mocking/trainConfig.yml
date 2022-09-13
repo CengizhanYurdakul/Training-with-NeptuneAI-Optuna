@@ -15,7 +15,7 @@ validationImagePath: src/Data/ImagesValidation # Validation images path
 validationInformationCSV: src/Mocking/ValidationGenderInformation.csv # Validation gender information csv path
 
 # Training Settings
-device: cuda:0 # Device for training
+device: cpu # Device for training
 numEpochs: 25 # How many epoch will be training done
 accuracyThreshold: 0.87 # Limit to compare with validation accuracy if higher save model to local and NeptuneAI 
 lossFunction: BCEWithLogitsLoss # Loss function to use in training
