@@ -26,3 +26,10 @@ batchSize: 64 # Batch size for train/test/validation
 imageSize: 32 # Image size to transform images
 numWorkers: 4 # Num workers for data loaders
 testSize: 0.05 # Percentage of images to allocate from train to test
+
+# Mocking Variables
+lr: 0.001
+optimizer: Adam
+backbone: resnet18
+momentum: 0.9
+pretrained: false
